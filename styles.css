@@ -34,4 +34,5 @@ p {
     border: 1px solid black;
     position: absolute;
     bottom: 5px;
+    color: red;
 }

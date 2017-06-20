@@ -1,0 +1,134 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="styles.css">
+    <title>Info</title>
+
+    <!-- width määrab vihma laiuse browseris -->
+    <style>
+        .drop { position: absolute; width: 30; filter: flipV(), flipH(); font-size: 40; color: blue }
+    </style>
+
+<script language="javascript">
+
+snow = false; // false-rain; true-snow
+snowsym = " * " //These are the symbols for each
+rainsym = " | " //You can put images here.
+howmany = 20 //How many drops/snowflakes?
+
+if(snow){sym = snowsym; speed=1; angle=10; drops=howmany}
+else{sym = rainsym; speed=15; drops=howmany; angle=6}
+movex = -speed/angle; movey = speed; count = 0;
+
+function moverain(){
+for(move = 0; move < drops; move++){
+xx[move]+=movex; yy[move]+=mv[move];
+hmm = Math.round(Math.random()*1);
+if(xx[move] < 0){xx[move] = maxx+10;}
+if(yy[move] > maxy){yy[move] = 10;}
+drop[move].left = xx[move]
+drop[move].top = yy[move]+document.body.scrollTop;
+}setTimeout('moverain()','1')}
+
+</script>
+
+</head>
+
+
+<body>
+
+
+<p align ="center">Tarne/sprindi info</p>
+
+<table id="tabel">
+
+    <tr>
+        <th>Atribuut</th>
+        <th>Väärtus</th>
+    </tr>
+
+    <!-- siin saab muuta Atribuut ja Väärtus veerus olevaid väärtusi -->
+    <tr>
+        <td>Live ver.</td>
+        <td>17.10</td>
+    </tr>
+    <tr>
+        <td>Käesolev sprint</td>
+        <td>78</td>
+    </tr>
+    <tr>
+        <td>Tarne kp</td>
+        <td>28.06</td>
+    </tr>
+    <tr>
+        <td><b>Devel ver.</b></td>
+        <td><b>17.12</b></td>
+    </tr>
+    <tr>
+        <td>Eelmise tarne kp</td>
+        <td>14.05</td>
+    </tr>
+    <tr>
+        <td>Eelmise tarne ver.</td>
+        <td>17.11</td>
+    </tr>
+
+</table>
+
+
+
+<marquee id="marquee" behavior="scroll" direction="left" scrollamount="5">
+
+    <!-- siia lisatud info kuvatakse liikuva tektsina kuva jaluses -->
+    <text>Head Jaanikut! Simmanil näeme, PRIA!</text>
+
+</marquee>
+
+
+<marquee behavior="scroll" direction="left" scrollamount="8">
+    <img src="pildid/vikerkaaresoost.png" width="120" height="80" alt="Natural" />
+</marquee>
+
+
+<marquee behavior="scroll" direction="left" scrollamount="2">
+    <img src="pildid/lehm2_vihmavarjuga.png" width="120" height="80" alt="Natural" />
+</marquee>
+
+
+<marquee behavior="scroll" direction="left" scrollamount="3">
+    <img src="pildid/lehm1_vihmavarjuga.jpg" width="120" height="80" alt="Natural" />
+</marquee>
+
+
+
+
+
+
+<script language="javascript">
+
+
+drop = new Array(); xx = new Array(); yy = new Array(); mv = new Array()
+ly = "document.all[\'"; st = "\'].style"
+for(make = 0; make < drops; make++){
+document.write('<div id="drop'+make+'" class=drop>'+sym+'</div>');
+drop[make] = eval(ly+'drop'+make+st);
+maxx = document.body.clientWidth-40
+maxy = document.body.clientHeight-40
+xx[make] = Math.random()*maxx;
+yy[make] = -100-Math.random()*maxy;
+drop[make].left = xx[make]
+drop[make].top = yy[make]
+mv[make] = (Math.random()*5)+speed/4;
+drop[make].fontSize = (Math.random()*10)+20;
+if(snow){col = 'white'}else{col = 'blue'}
+drop[make].color = col;
+}
+window.onload=moverain
+
+</script>
+
+
+
+</body>
+</html>
